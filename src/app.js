@@ -8,6 +8,7 @@ const pino = require('express-pino-logger')({
     levelFirst: true,
   },
 });
+const { errorMiddleware } = require('src/middleware/error');
 
 const app = express();
 
@@ -24,6 +25,6 @@ app.use(bodyParser.json({
 app.use(cors());
 app.all('/', (req, res) => res.sendStatus(200));
 
-// app.use(errorMiddleware)
+app.use(errorMiddleware);
 
 module.exports = app;
