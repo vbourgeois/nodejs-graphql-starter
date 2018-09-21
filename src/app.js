@@ -11,6 +11,7 @@ const pino = require('express-pino-logger')({
 const { errorMiddleware } = require('src/middleware/error');
 
 const restRouter = require('src/route/rest');
+const graphqlRouter = require('src/route/graphql');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(bodyParser.json({
 app.use(cors());
 
 app.use('/rest', restRouter);
+app.use('/graphql', graphqlRouter);
 
 app.all('/', (req, res) => res.sendStatus(200));
 
