@@ -10,6 +10,8 @@ const pino = require('express-pino-logger')({
 });
 const { errorMiddleware } = require('src/middleware/error');
 
+const restRouter = require('src/route/rest');
+
 const app = express();
 
 app.set('port', process.env.PORT || 3000);
@@ -23,6 +25,9 @@ app.use(bodyParser.json({
   },
 }));
 app.use(cors());
+
+app.use('/rest', restRouter);
+
 app.all('/', (req, res) => res.sendStatus(200));
 
 app.use(errorMiddleware);
