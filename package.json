@@ -33,7 +33,6 @@
     "express-graphql": "0.6.12",
     "express-pino-logger": "^4.0.0",
     "graphql": "0.13.2",
-    "graphql-type-json": "0.2.1",
     "helmet": "3.13.0",
     "lodash": "4.17.11",
     "moment": "2.22.2"
