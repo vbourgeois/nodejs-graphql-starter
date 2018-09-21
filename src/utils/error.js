@@ -1,7 +1,7 @@
-const { log } = require('src/utils/logger');
+const { logger } = require('src/utils/logger');
 
 const formatError = (e) => {
-  log.error(e);
+  logger.error(e);
 
   switch (true) {
     case e.name === 'BadRequest':

@@ -1,19 +1,20 @@
 const app = require('src/app');
+const { logger } = require('src/utils/logger');
 
 const server = app.listen(app.get('port'), () => {
-  console.info(`✓ App is running at http://localhost:${app.get('port')} in ${app.get('env')} mode
+  logger.info(`✓ App is running at http://localhost:${app.get('port')} in ${app.get('env')} mode
   Press CTRL-C to stop`);
 });
 
 
 process.on('uncaughtException', (e) => {
-  console.debug('uncaught exception:', e);
+  logger.debug('uncaught exception:', e);
   server.close();
   process.exit(1);
 });
 
 process.on('unhandledRejection', (e) => {
-  console.debug('unhandled rejection:', e);
+  logger.debug('unhandled rejection:', e);
   server.close();
   process.exit(1);
 });
