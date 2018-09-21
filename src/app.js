@@ -3,12 +3,16 @@ const cors = require('cors');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
+const pino = require('express-pino-logger')({
+  prettyPrint: {
+    levelFirst: true,
+  },
+});
 
-// Express configuration
 const app = express();
 
-app.set('port', process.env.PORT || 3004);
-// app.use(httplog)
+app.set('port', process.env.PORT || 3000);
+app.use(pino);
 app.use(helmet());
 app.use(compression());
 app.use(bodyParser.json({
@@ -17,8 +21,6 @@ app.use(bodyParser.json({
     req.rawBody = buf.toString();
   },
 }));
-app.use(bodyParser.raw({ limit: '5mb', type: 'audio/wav' }));
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.all('/', (req, res) => res.sendStatus(200));
 
