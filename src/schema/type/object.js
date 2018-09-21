@@ -3,6 +3,7 @@ const {
   GraphQLObjectType,
   GraphQLInt,
   GraphQLString,
+  GraphQLInputObjectType,
 } = require('graphql');
 
 const ObjectFields = {
@@ -17,6 +18,12 @@ const ObjectType = new GraphQLObjectType({
     ...ObjectFields,
     id: { type: GraphQLInt },
   }),
+});
+
+const ObjectInputType = new GraphQLInputObjectType({
+  name: 'ObjectInput',
+  description: 'Object Input',
+  fields: () => ObjectFields,
 });
 
 const ObjectCollection = new GraphQLList(ObjectType);
@@ -47,3 +54,5 @@ const ObjectView = {
 };
 
 module.exports.ObjectView = ObjectView;
+module.exports.ObjectType = ObjectType;
+module.exports.ObjectInputType = ObjectInputType;
